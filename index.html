@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Censo - Obligatorio</title>
+    <script src="Js/Clases.js" defer></script>
+    <script src="Js/Sistema.js" defer></script>
+    <script src="Js/Codigo.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="container-fluid mb-4">
+        <div class="row align-items-center" id="navInicio">
+            <div class="col-12 text-center">
+                <img id="logo" src="descarga.png" alt="Logotipo Censo" style="width: 250px;" class="img-fluid"/>
+            </div>
+        </div>
+
+        <nav id="navPrincipal" class="mt-3">
+            <div class="container d-flex gap-2 justify-content-center">
+              
+                    <button id="btnMostrarRegistrar" class="btn btn-dark">Registrar</button>
+                    <button id="btnBuscar" class="btn btn-dark">Buscar</button>
+                    <button id="btnReasignarPersona" class="btn btn-dark">Reasignar</button>
+                    <button id="btnEstadisticas" class="btn btn-dark">Estadísticas</button>
+                    <button id="btnSalir" class="btn btn-danger">Salir</button>
+            </div>
+        </nav>
+        
+        <div id="aux" class="mt-2 d-flex justify-content-center">
+                    <p id="nombreUsuarioLogeado" ></p>
+                    
+                </div>
+    </header>
+
+    <main class="container mb-5">
+        <section id="seccionPerfiles" class="col-md-6 mx-auto card p-4">
+            <h3 class="text-center mb-4 gran-titulo">Seleccionar Perfil</h3>
+            <select class="form-select mb-3" id="slcPerfiles">
+                <option value="censista">Censista</option>
+                <option value="persona">Invitado</option>
+            </select>
+            <div class="text-center"> 
+                <button class="btn btn-success px-5" id="btnSeleccionarPerfil">Ingresar</button>
+            </div>
+        </section>
+
+        <section id="seccionLogin" class="col-md-6 mx-auto mt-4">
+            <div class="card p-4">
+                <h3 class="text-center">Ingresar Cuenta</h3>
+                <p class="text-center">Si no está registrado, por favor regístrese.</p>
+                <div class="text-center mb-3">
+                    <button class="btn btn-outline-info btn-sm" id="btnRegistrar">Ir a Registro</button>
+                </div>
+                <div class="mb-3">
+                    <label for="loginUsuario" class="form-label">Nombre Usuario</label>
+                    <input type="text" class="form-control" id="loginUsuario" placeholder="Usuario">
+                </div>
+                <div class="mb-3">
+                    <label for="loginClave" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="loginClave" placeholder="Contraseña">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success w-100" id="btnLogin">Ingresar</button>
+                </div>
+                <p id="mensajeLogin" class="mt-2 text-center text-danger"></p>
+            </div>
+        </section>
+
+        <section id="seccionRegistrarUsuario" class="col-md-6 mx-auto mt-4">
+            <div class="card p-4 shadow-sm">
+                <h3 class="text-center mb-3">Registro de Censista</h3>
+                <div class="mb-2">
+                    <label for="nombreCen" class="form-label">Nombre completo:</label>
+                    <input type="text" id="nombreCen" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label for="nombreUsuario" class="form-label">Nombre de Usuario:</label>
+                    <input type="text" id="nombreUsuario" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="clave" class="form-label">Contraseña:</label>
+                    <input type="password" id="clave" class="form-control" />
+                </div>
+                <button class="btn btn-success w-100" id="confirmarRegistro">Confirmar Registro</button>
+                <p id="mensajeRegistro" class="mt-2 text-center"></p>
+            </div>
+        </section>
+
+        <section id="seccionRegistrarCenso" class="col-md-8 mx-auto mt-4">
+            <div class="card p-4 shadow-sm">
+                <h3 class="mb-3 text-center">Formulario de Censo</h3>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="nombreRegistroCenso" class="form-label">Nombre:</label>
+                        <input type="text" id="nombreRegistroCenso" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellidoRegistroCenso" class="form-label">Apellido:</label>
+                        <input type="text" id="apellidoRegistroCenso" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="edadRegistroCenso" class="form-label">Edad:</label>
+                        <input type="number" id="edadRegistroCenso" class="form-control" />
+                    </div>
+                    <div class="col-md-8">
+                        <label for="cedulaRegistroCenso" class="form-label">Cédula:</label>
+                        <input type="text" id="cedulaRegistroCenso" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="slcDepartamento" class="form-label">Departamento:</label>
+                        <select class="form-select" id="slcDepartamento"></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="slcOcupacion" class="form-label">Ocupación:</label>
+                        <select class="form-select" id="slcOcupacion"></select>
+                    </div>
+                </div>
+                <p id="mensajeRegistroCenso" class="mt-3 text-center fw-bold"></p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                    <button class="btn btn-success" id="btnRegistrarCenso">Guardar</button>
+                    <button class="btn btn-info text-white" id="btnValidarCenso">Validar Registro por Invitado</button>
+                    <button class="btn btn-primary" id="btnGuardarInvitado">Guardar Invitado</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccionBuscador" class="col-md-8 mx-auto mt-4">
+            <div class="card p-4">
+                <h2 class="card-title text-center mb-4">Buscador</h2>
+                <div class="input-group mb-3">
+                    <label class="input-group-text">Cédula:</label>
+                    <input type="text" id="buscarCedula" class="form-control" placeholder="Ej: 1.234.567-8" />
+                    <button id="btnBuscarCi" class="btn btn-success">Buscar</button>
+                </div>
+                <div id="pResultadoBusqueda" class="alert alert-light border d-none"></div>
+                <div class="text-center">
+                    <button id="btnValidarCensos" class="btn btn-primary mt-2">Validar este Censo</button>
+                </div>
+                <p id="pResultadoValidadoEnBusqueda" class="mt-2"></p>
+            </div>
+        </section>
+
+        <section id="seccionReasignar" class="col-md-8 mx-auto mt-4">
+            <div class="card ">
+                <div class="card-header text-center">
+                    <h2 class="mb-0 card-title text-center mb-4">Reasignar Censo</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label">Seleccionar persona</label>
+                            <select class="form-select" id="slcReasignar"></select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label">Seleccionar nuevo Censista</label>
+                            <select class="form-select" id="slcCensistas"></select>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary px-5" id="btnReasignarCensado">Reasignar</button>
+                        <p id="pReasignarPersona" class="mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccionInfoEstadisitca" class="mt-4">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
+                    <h5 class="text-muted mb-3">Total Censados</h5>
+                    <div id="pTotalCensados" class="dato-grande mb-3">0</div>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-4" id="idTotalCensados">
+                        Actualizar Dato
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Censados por Departamento</h5>
+                        <button id="idTotalporDepto" class="btn btn-primary btn-sm">Actualizar Tabla</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tabla-conteo" class="table table-hover align-middle mb-0">
+                            </table>
+                    </div>
+                    <p id="pTotalCensadosDepto" class="mt-2 small text-muted text-end"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card shadow-sm border-0 overflow-hidden">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Pendientes de Validación</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-4 text-center border-end border-light">
+                            <button id="idPendites" class="btn btn-dark btn-sm mb-3">Cargar Porcentaje</button>
+                            <div id="pTotalpendientes" class="display-5 fw-bold text-primary">0%</div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="p-2">
+                                <label class="form-label">Filtro por departamento</label>
+                                <select class="form-select mb-3" id="slcSeleccionarDepto2"></select>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-primary w-100" id="btnVerDeptos">Cargar Lista</button>
+                                    <button class="btn btn-primary w-100" id="btnMostrarEstadisticas">Ver Estadísticas</button>
+                                </div>
+                                <p id="pMostrarPorDepto" class="mt-3 mb-0 fw-bold text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+       <section id="seccionInvitados" class="mt-5">
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <h4 class="text-center">Nuevo Censo</h4>
+                <div class="flex-grow-1 d-flex align-items-center justify-content-center py-4">
+                    <p class="text-muted text-center">Inicie un nuevo registro de forma rápida.</p>
+                </div>
+                <button id="btnRegistrarInvi" class="btn btn-primary w-100">Abrir Formulario</button>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <h4 class="text-center">Mi Registro</h4>
+                <div class="flex-grow-1">
+                    <div class="mb-3">
+                        <label for="buscarCedulainv" class="form-label small">Ingresar C.I</label>
+                        <input type="text" id="buscarCedulainv" class="form-control" />
+                    </div>
+                    <div id="pResultadoBusquedainv" class="small mb-2"></div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button id="btnBuscarCiinv" class="btn btn-success">Buscar</button>
+                    <button id="btnGuardarCensosinvi" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <h4 class="text-center">Estadísticas</h4>
+                <button id="btnMostrarEstadistica" class="btn btn-outline-primary btn-sm mb-3">Actualizar</button>
+                <div class="table-responsive">
+                    <table id="tablaInvitado" class="table table-sm table-hover mb-0">
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="container-fluid py-2 bg-light border-top">
+        <div class="text-center">
+            <p class="text-decoration-none text-muted">Obligatorio 2022 - Sistema de Censo</p>
+        </div>
+    </footer>
+</body>
+</html>

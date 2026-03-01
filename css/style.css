@@ -1,0 +1,242 @@
+:root {
+    --color-principal: #03bdb1;
+    --color-rojo: #df0808;
+    --sombra-suave: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-fuerte: 0px 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Estructura Base --- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* --- Navegación --- */
+#navPrincipal .btn {
+    min-width: 120px;
+    border-radius: 8px !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#navPrincipal .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#nombreUsuarioLogeado {
+    background: #e9ecef;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #495057;
+}
+
+/* --- Formularios Uniformes (Cards) --- */
+section .card {
+    border: none;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: var(--sombra-suave);
+    padding: 2.5rem !important; /* Espaciado interno generoso */
+    margin-bottom: 2rem;
+}
+
+/* Títulos de los Formularios con línea decorativa */
+section h2, section h3 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+section h2::after, section h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background-color: var(--color-principal);
+    border-radius: 2px;
+}
+
+/* Inputs y Selects */
+.form-control, .form-select {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    background-color: #fdfdfd;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-principal);
+    background-color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(3, 189, 177, 0.15);
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #555;
+    margin-left: 4px;
+}
+
+/* --- Botones de Acción --- */
+section .btn:not(.btn-sm) {
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+section .btn-success {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+section .btn-success:hover {
+    background-color: #02a89d;
+    filter: brightness(0.95);
+}
+
+/* --- Estilo Enunciado Especial --- */
+.msjFun {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3436;
+    margin-top: 30px;
+    padding-left: 15px;
+    border-left: 5px solid var(--color-rojo);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Secciones Especiales --- */
+#seccionPerfiles .card {
+    background-color: rgba(3, 189, 177, 0.03);
+    border: 1px solid rgba(3, 189, 177, 0.1);
+}
+
+/* Tablas */
+.table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    background: white;
+}
+
+/* --- Estilos para Dashboard de Estadísticas --- */
+/* --- Grilla de Estadísticas Pro --- */
+
+/* --- Grilla de Estadísticas Unificada --- */
+
+@media (min-width: 992px) {
+    #seccionInfoEstadisitca .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Crea dos columnas iguales */
+        gap: 1.5rem;
+    }
+
+    /* Forzamos a los divs de Bootstrap a ignorar su ancho original y usar el de la grilla */
+    #seccionInfoEstadisitca .col-md-4,
+    #seccionInfoEstadisitca .col-md-8,
+    #seccionInfoEstadisitca .col-md-12 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0;
+    }
+
+    /* El bloque de Pendientes (col-md-12) ahora ocupará ambas columnas abajo */
+    #seccionInfoEstadisitca .col-md-12 {
+        grid-column: span 2;
+    }
+}
+
+/* --- Estabilidad de Contenido --- */
+
+/* Evita que las cards cambien de tamaño cuando el texto de los IDs esté vacío */
+#seccionInfoEstadisitca .card {
+    min-height: 250px; 
+    display: flex;
+    flex-direction: column;
+}
+
+#pTotalCensados, #pTotalpendientes {
+    min-height: 1.2em; /* Reserva espacio para el número */
+    transition: all 0.3s ease;
+}
+
+/* Scroll interno para la tabla para que no "estire" la card hacia abajo */
+#seccionInfoEstadisitca .table-responsive {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Estilo para el dato grande */
+.dato-grande {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-principal);
+}
+
+
+/* --- Grilla de Invitados Uniforme --- */
+
+/* --- Sincronización de Altura para Invitados --- */
+
+@media (min-width: 992px) {
+    #seccionInvitados .row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas exactamente iguales */
+        align-items: stretch; /* Estira las cards para que midan lo mismo */
+        gap: 1.5rem;
+    }
+
+    /* Anulamos los anchos de Bootstrap para que mande el Grid */
+    #seccionInvitados .col-lg-4 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+#seccionInvitados .card {
+    height: 100%; /* Ocupa todo el alto de la fila del grid */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem !important;
+    border: none;
+    box-shadow: var(--sombra-suave);
+}
+
+/* Alineamos los botones al final de la card para que todos coincidan abajo */
+#seccionInvitados .card-body, 
+#seccionInvitados .card-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forzamos que la tabla no estire la card hacia abajo */
+#seccionInvitados .table-responsive {
+    flex-grow: 1;
+    max-height: 200px; /* Si la tabla crece, aparece scroll en vez de agrandar la card */
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+#seccionInvitados .btn {
+    margin-top: auto; /* Empuja los botones siempre al fondo de la card */
+}
